@@ -32,12 +32,10 @@ This is a professional portfolio home page showcasing web development skills and
 
 ## Live Deployments
 
-## Live Deployments
+- **GitHub Pages**: [https://your-username.github.io/portfolio-repo](https://your-username.github.io/portfolio-repo)
+- **Vercel**: [https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)
 
-## Live Deployments
-
-- **GitHub Pages**: [https://samatifidel-sketch.github.io/my_portforlio/](https://samatifidel-sketch.github.io/my_portforlio/)
-- **Vercel**: my-portfolio-ashy.vercel.app](https://my-portfolio-ashy.vercel.app)
+*(Replace with your actual deployed URLs)*
 
 ## How to Run Locally
 
