@@ -1,139 +1,63 @@
-# Personal Portfolio - Home Page
+# Fidel's Portfolio
 
-A responsive, semantic HTML5 personal portfolio website built for **CSN 1101: Web Technologies and Internet Applications** at KCA University.
+Personal portfolio website built for **CSN 1101: Web Technologies and Internet Applications** at KCA University. This is the final version (Assignment 3), continuing from Assignments 1 and 2.
 
-## About
+## Live Links
+- GitHub Pages: `https://samatifidel-sketch.github.io/my_portforlio/`
+- Vercel: `https://my-portforlio-ashy.vercel.app/`
 
-This is a professional portfolio home page showcasing web development skills and introducing myself as a first-year ICT student at KCA University. The site is built with clean, semantic HTML5 and responsive CSS, with no external frameworks or libraries.
+## What's on the Site
+- **Home**: introduction and headshot
+- **Projects**: my projects, plus a live list of my GitHub repositories
+- **Contact**: contact form (from Assignment 2)
 
-## Features
+## Assignment 3 Work
 
-- **Responsive Design**: Works seamlessly from 320px (mobile) to desktop widths
-- **Semantic HTML5**: Proper use of `<header>`, `<nav>`, `<main>`, `<footer>` elements
-- **Light Theme**: Modern, professional design with a clean color palette
-- **Mobile-First**: Optimized for all screen sizes using CSS media queries
-- **External Styling**: All CSS in a separate stylesheet (no inline styles)
-- **Professional Photo**: Clear headshot with optimized file size
-- **Contact Links**: Email and social/professional links (GitHub, LinkedIn)
+### 1. Live API Integration (GitHub API)
+The Projects page fetches my public repositories from the GitHub API using the Fetch API:
 
-## Sections
+`https://api.github.com/users/samatifidel-sketch/repos`
 
-1. **Navigation Bar** - Links to Home, Projects, and Contact
-2. **Hero Section** - Professional photo, name, and tagline
-3. **About Me** - Brief introduction about skills and interests
-4. **Contact Footer** - Email and social links with call-to-action
+- **Loading state**: shows "Loading repositories..." while the request runs.
+- **Rendering**: each repo's name, description, language, stars and link are turned into a card.
+- **Error handling**: if the request fails, a friendly message is shown instead of a broken page. Tested by deliberately using a wrong URL.
+- **No API key** is needed. Unauthenticated requests are limited to 60 per hour per IP, which is another reason the error handling matters.
 
-## Technical Details
+Code is in `github.js`.
 
-- **HTML5**: Valid and semantic markup
-- **CSS3**: Responsive design with mobile-first approach
-- **Accessibility**: Clear structure and semantic elements for screen readers
-- **Performance**: Optimized images and minimal external resources
+### 2. Security Review
+- No API keys, tokens or secrets anywhere in the client-side code.
+- All dynamic content is inserted with `textContent` (no `innerHTML` anywhere in the project, confirmed by searching the whole codebase).
+- External links use `rel="noopener"`.
+- Both deployments are served over HTTPS (confirmed on GitHub Pages and Vercel).
 
-## Live Deployments
+### 3. Performance
+- Images compressed and resized to the size they are displayed at.
+- `loading="lazy"` added to below-the-fold images.
+- `width` and `height` set on images to avoid layout shift.
 
-- **GitHub Pages**: [https://your-username.github.io/portfolio-repo](https://your-username.github.io/portfolio-repo)
-- **Vercel**: [https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)
+#### Lighthouse Performance (mobile)
 
-*(Replace with your actual deployed URLs)*
+| Page     | Before | After |
+|----------|--------|-------|
+| Home     | 100    | 100   |
+| Projects | 100    | 100   |
 
-## How to Run Locally
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/portfolio-repo.git
-   cd portfolio-repo
-   ```
-
-2. Open `index.html` in your browser:
-   - Right-click `index.html` → Open with browser
-   - Or use a local server: `python -m http.server 8000`
-
-3. View at `http://localhost:8000`
+Total page weight: `X MB` before, `Y KB` after image compression.
 
 ## Project Structure
-
 ```
-portfolio-repo/
-├── index.html        # Main home page
-├── style.css         # Responsive stylesheet
-├── photo.jpg         # Professional headshot (300-500KB)
-└── README.md         # This file
+index.html
+projects.html
+contact.html
+style.css
+github.js
+(images)
 ```
+Adjust this to match your actual files.
 
-## Customization
-
-### Add Your Photo
-Replace `photo.jpg` with your own professional headshot. Compress it to 300-500KB for performance.
-
-### Update Contact Links
-Edit the contact links in the footer:
-- Change `your-email@example.com` to your actual email
-- Update GitHub and LinkedIn URLs
-
-### Change the Color Palette
-Edit the CSS variables in `style.css`:
-```css
-:root {
-    --primary-color: #2c3e50;      /* Dark blue-grey */
-    --secondary-color: #3498db;    /* Bright blue */
-    --light-bg: #f8f9fa;           /* Off-white background */
-    /* ... etc */
-}
-```
-
-## Deployment Instructions
-
-### Deploy to GitHub Pages
-
-1. Push your code to GitHub:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial portfolio"
-   git branch -M main
-   git remote add origin https://github.com/your-username/portfolio-repo.git
-   git push -u origin main
-   ```
-
-2. In your GitHub repository:
-   - Go to **Settings** → **Pages**
-   - Set **Source** to "Deploy from a branch"
-   - Select **main** branch and **/ (root)** folder
-   - Click **Save**
-
-3. Wait 1-2 minutes, then visit: `https://your-username.github.io/portfolio-repo/`
-
-### Deploy to Vercel
-
-1. Go to [vercel.com](https://vercel.com) and sign up/log in with GitHub
-2. Click **Add New** → **Project**
-3. Select your portfolio repository
-4. Leave default settings and click **Deploy**
-5. Your site will be live at `https://your-portfolio-name.vercel.app`
-
-## Validation
-
-- **HTML Validation**: Check at [validator.w3.org](https://validator.w3.org)
-- **Responsive Testing**: Test in browser dev tools at different viewport sizes (320px, 480px, 768px, 1024px)
-- **Performance**: Compress images and test load times
-
-## Assignment Rubric Coverage
-
-- ✅ **HTML Structure & Semantics** (20%): Semantic HTML5 with proper elements
-- ✅ **CSS Styling & Responsiveness** (20%): Light theme, responsive to 320px+
-- ✅ **Content Quality** (15%): Professional photo, bio, contact info
-- ✅ **Deployment** (20%): GitHub Pages and Vercel live
-- ✅ **Code Quality & Organisation** (10%): Clean indentation, external CSS, README
-- ✅ **Presentation** (15%): Ready for 2-3 minute walkthrough
+## Tech
+HTML, CSS, vanilla JavaScript, Fetch API, GitHub Pages, Vercel.
 
 ## Notes
-
-- Both deployments auto-update when you push to GitHub
-- Test in private/incognito browser before submission to ensure links work
-- Be ready to present the live site in your next lab session
-
----
-
-**Built for CSN 1101 Assignment 1**  
-KCA University, September 2026
+JavaScript in this project is my own work, with reference to MDN and the GitHub API documentation.
